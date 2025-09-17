@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using TMPro;
 
 public class CandyManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class CandyManager : MonoBehaviour
 
     public int candy = DefaultCandyAmount;
     int counter;
+    public TextMeshProUGUI amountText;
     public void ConsumeCandy()
     {
         if (candy > 0) candy--;
@@ -23,19 +25,26 @@ public class CandyManager : MonoBehaviour
         candy += amount;
     }
     //簡易的な表示
-    void OnGUI()
+    // void OnGUI()
+    // {
+    //     GUI.color = Color.black;
+    //     string label = "Candy : " + candy;
+    //     if (counter > 0) label = label + "(" + counter + "s)";
+    //     GUI.Label(new Rect(50, 50, 100, 30), label);
+    // }
+    void DrawAmout()
     {
-        GUI.color = Color.black;
         string label = "Candy : " + candy;
         if (counter > 0) label = label + "(" + counter + "s)";
-        GUI.Label(new Rect(50, 50, 100, 30), label);
-    }
+        amountText.text = label;
+   }
     void Update()
     {
         if (candy < DefaultCandyAmount && counter <= 0)
         {
             StartCoroutine(RecoverCandy());
         }
+        DrawAmout();
     }
     IEnumerator RecoverCandy()
     {

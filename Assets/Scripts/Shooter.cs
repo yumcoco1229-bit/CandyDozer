@@ -16,7 +16,7 @@ public class Shooter : MonoBehaviour
     public float baseWidth;
     public TextMeshProUGUI powerText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void start()
+    void Start()
     {
         shotSound = GetComponent<AudioSource>();
     }
